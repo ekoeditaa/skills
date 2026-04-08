@@ -1,5 +1,5 @@
 ---
-name: plan-to-code
+name: eko:plan-to-code
 description: Use when a plan is ready to be built. Execute a plan phase by phase, spawning parallel agents per wave, using TDD and incremental implementation for each task.
 ---
 

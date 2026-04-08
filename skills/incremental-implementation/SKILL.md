@@ -1,5 +1,5 @@
 ---
-name: incremental-implementation
+name: eko:incremental-implementation
 description: Use when implementing any feature or change that touches more than one file. Delivers changes in thin vertical slices — implement one piece, test it, verify it, commit, then expand.
 ---
 

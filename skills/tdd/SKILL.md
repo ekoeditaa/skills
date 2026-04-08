@@ -1,5 +1,5 @@
 ---
-name: tdd
+name: eko:tdd
 description: Use when implementing any task during /build. Write failing tests first (RED), then implement minimum code to pass (GREEN). Enforces test-driven development discipline.
 ---
 

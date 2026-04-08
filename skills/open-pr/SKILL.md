@@ -1,5 +1,5 @@
 ---
-name: open-pr
+name: eko:open-pr
 description: Use when work is ready to be submitted as a pull request. Analyzes changes, generates structured PR description following the repository's PR template, and opens the PR via gh CLI.
 ---
 

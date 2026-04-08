@@ -1,5 +1,5 @@
 ---
-name: idea-to-spec
+name: eko:idea-to-spec
 description: Use when turning a vague idea into something concrete. Shape a raw idea into a structured spec with clear problem, solution, scope, and next steps.
 ---
 

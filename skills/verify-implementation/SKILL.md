@@ -1,5 +1,5 @@
 ---
-name: verify-implementation
+name: eko:verify-implementation
 description: Use when verifying implemented work. Reproduces bugs with failing tests, verifies features through browser-based user testing. All verification steps are persisted as runnable test files.
 ---
 

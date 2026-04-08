@@ -1,5 +1,5 @@
 ---
-name: spec-to-plan
+name: eko:spec-to-plan
 description: Use when a spec needs breaking down into an executable plan. Turns a structured spec into vertical-slice phases with sized tasks, execution waves, and verification gates ready for /build.
 ---
 

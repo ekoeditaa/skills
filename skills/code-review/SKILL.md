@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: eko:code-review
 description: Use when reviewing code changes. Evaluates design, functionality, complexity, tests, naming, and style to improve long-term codebase health. Produces actionable findings with severity levels.
 ---
 
