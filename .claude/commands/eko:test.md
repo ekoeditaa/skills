@@ -2,7 +2,12 @@
 description: Verify the implementation through tests and browser-based user verification
 ---
 
-MANDATORY: Load and use the `eko:verify-implementation` skill at `.claude/skills/verify-implementation/SKILL.md`. Do not improvise your own process — execute every step in the skill's Process section in order. Do not skip the Verification checklist.
+Follow the process defined in the `eko:verify-implementation` skill to verify the current work.
+
+Read the skill file before starting:
+- `.claude/skills/verify-implementation/SKILL.md`
+
+MANDATORY: Execute every step in the skill's Process section in order. Do not skip the Verification checklist.
 
 $ARGUMENTS
 

@@ -2,7 +2,12 @@
 description: Review code for design, correctness, complexity, and codebase health
 ---
 
-MANDATORY: Load and use the `eko:code-review` skill at `.claude/skills/code-review/SKILL.md`. Do not improvise your own process — execute every step in the skill's Process section in order. Do not skip the Verification checklist.
+Follow the process defined in the `eko:code-review` skill to review the current changes.
+
+Read the skill file before starting:
+- `.claude/skills/code-review/SKILL.md`
+
+MANDATORY: Execute every step in the skill's Process section in order. Do not skip the Verification checklist.
 
 $ARGUMENTS
 

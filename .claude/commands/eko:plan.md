@@ -4,9 +4,14 @@ description: Break down a spec into an executable plan
 
 Enter plan mode. Do not write any code.
 
-MANDATORY: Load and use the `eko:spec-to-plan` skill at `.claude/skills/spec-to-plan/SKILL.md`. Do not improvise your own process — execute every step in the skill's Process section in order. Do not skip the Verification checklist.
+Read the spec from `.eko/specs/` and follow the process defined in the `eko:spec-to-plan` skill to turn it into an actionable plan.
 
-Read the spec from `.eko/specs/` and save the plan to `.eko/plans/<name>.md`.
+Read the skill file before starting:
+- `.claude/skills/spec-to-plan/SKILL.md`
+
+MANDATORY: Execute every step in the skill's Process section in order. Do not skip the Verification checklist.
+
+Save the plan to `.eko/plans/<name>.md`.
 
 $ARGUMENTS
 
