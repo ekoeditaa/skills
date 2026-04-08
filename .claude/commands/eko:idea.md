@@ -7,3 +7,5 @@ Use the `eko:idea-to-spec` skill to research and shape this idea into a spec.
 Save the output to `.eko/ideas/<name>.md` where `<name>` is a slugified version of the idea.
 
 $ARGUMENTS
+
+When complete, suggest the user run `/eko:plan` to break the spec into an executable plan.
