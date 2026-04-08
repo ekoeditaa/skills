@@ -10,4 +10,6 @@ Read the plan from `.eko/plans/` then invoke these skills:
 
 $ARGUMENTS
 
+Before completing, verify all changes are committed: `git status` shows a clean working tree with no uncommitted changes.
+
 When complete, suggest the user run `/eko:review` to review the code.

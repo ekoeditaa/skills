@@ -98,6 +98,8 @@ Do not use when:
 
 11. **Produce review** — Output findings using the severity levels and format below.
 
+12. **Persist review** — Save the review report to `.eko/reviews/<scope-slug>.md`. Exit criteria: the report file exists and contains the full review output.
+
 ## Decision Principles
 
 Apply these when deciding whether to flag something:
@@ -196,3 +198,4 @@ Omit any category that has no findings. Only include categories where issues wer
 - [ ] Findings have severity levels and technical rationale
 - [ ] No false positives — every finding can be defended with facts, not preference
 - [ ] Verdict is provided with rationale
+- [ ] Review report is saved to `.eko/reviews/<scope-slug>.md`

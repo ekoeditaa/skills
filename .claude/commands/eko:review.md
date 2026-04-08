@@ -6,4 +6,4 @@ Invoke the `eko:code-review` skill to review the current changes.
 
 $ARGUMENTS
 
-When complete, suggest the user run `/eko:test` to verify the implementation.
+When complete, suggest the user run `/eko:fix` to address any findings, or `/eko:test` if the review is clean.

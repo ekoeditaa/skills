@@ -100,3 +100,4 @@ One assertion per test. If you need multiple asserts, you likely need multiple t
 - [ ] Full test suite still passes after refactor
 - [ ] Build is clean (compilation, types, linting)
 - [ ] Committed with conventional commit message
+- [ ] No uncommitted changes remain (`git status` is clean)
