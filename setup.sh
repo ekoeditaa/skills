@@ -20,7 +20,7 @@ fi
 
 mkdir -p "$TARGET_DIR/.claude/commands"
 cp "$SRC/.claude/commands/"*.md "$TARGET_DIR/.claude/commands/"
-echo "  Copied commands: idea, plan, build, review, test, pr"
+echo "  Copied commands: eko-idea, eko-plan, eko-build, eko-review, eko-test, eko-pr"
 
 mkdir -p "$TARGET_DIR/.claude/skills"
 cp -R "$SRC/skills/"* "$TARGET_DIR/.claude/skills/"
