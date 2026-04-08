@@ -22,8 +22,8 @@ mkdir -p "$TARGET_DIR/.claude/commands"
 cp "$SRC/.claude/commands/"*.md "$TARGET_DIR/.claude/commands/"
 echo "  Copied commands: idea, plan, build, review, test, pr"
 
-mkdir -p "$TARGET_DIR/skills"
-cp -R "$SRC/skills/"* "$TARGET_DIR/skills/"
+mkdir -p "$TARGET_DIR/.claude/skills"
+cp -R "$SRC/skills/"* "$TARGET_DIR/.claude/skills/"
 echo "  Copied skills"
 
 mkdir -p "$TARGET_DIR/hooks"
