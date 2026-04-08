@@ -1,5 +1,7 @@
 ---
-description: Review the implementation for quality and correctness
+description: Review code for design, correctness, complexity, and codebase health
 ---
+
+Use the `code-review` skill to review the current changes.
 
 $ARGUMENTS
