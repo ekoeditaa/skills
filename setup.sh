@@ -106,5 +106,43 @@ print('  Merged SessionStart hook into .claude/settings.json')
 
 merge_hooks
 
+STATUSLINE_SRC="$SRC/statusline.sh"
+STATUSLINE_DST="$HOME/.claude/statusline-eko-skills.sh"
+SETTINGS_LOCAL="$TARGET_DIR/.claude/settings.local.json"
+
+cp "$STATUSLINE_SRC" "$STATUSLINE_DST"
+chmod +x "$STATUSLINE_DST"
+echo "  Copied statusline script to $STATUSLINE_DST"
+
+merge_statusline() {
+  local sl_entry="{\"type\":\"command\",\"command\":\"bash $STATUSLINE_DST\"}"
+  if command -v jq &>/dev/null; then
+    if [ ! -f "$SETTINGS_LOCAL" ]; then
+      echo "$sl_entry" | jq '{statusLine: .}' > "$SETTINGS_LOCAL"
+    else
+      jq --argjson sl "$sl_entry" '.statusLine = $sl' "$SETTINGS_LOCAL" > "$SETTINGS_LOCAL.tmp" && mv "$SETTINGS_LOCAL.tmp" "$SETTINGS_LOCAL"
+    fi
+  elif command -v python3 &>/dev/null; then
+    python3 -c "
+import json, os
+path = '$SETTINGS_LOCAL'
+entry = json.loads('$sl_entry')
+data = {}
+if os.path.exists(path):
+    with open(path) as f:
+        data = json.load(f)
+data['statusLine'] = entry
+with open(path, 'w') as f:
+    json.dump(data, f, indent=2)
+"
+  else
+    echo "Error: jq or python3 required for JSON merging"
+    exit 1
+  fi
+  echo "  Configured statusline in .claude/settings.local.json"
+}
+
+merge_statusline
+
 echo ""
-echo "Done. Workflow: /idea -> /plan -> /build -> /review -> /test -> /pr"
+echo "Done. Workflow: /idea -> /plan -> /build -> /review -> /fix -> /test -> /pr"
