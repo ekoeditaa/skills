@@ -1,22 +1,27 @@
 ---
 name: setup-agents-instructions
-description: Set up a structured agent knowledge base with AGENTS.md as a short map, ARCHITECTURE.md as a domain map, and docs/CODING.md as coding guidelines. Follows the progressive disclosure model — agents start with a small entry point and follow pointers to deeper docs. Use when user asks to "setup agents instructions", "create AGENTS.md", "setup agent knowledge base", "add agent docs", "generate AGENTS.md", "setup agent context", or any request to create documentation that helps AI agents navigate and work within a codebase.
+description: >-
+  Set up a structured agent knowledge base with AGENTS.md as a short map,
+  ARCHITECTURE.md as a domain map, and docs/CODING.md as coding guidelines.
+  Follows progressive disclosure — agents start with a small entry point and
+  follow pointers to deeper docs. Use when user asks to "setup agents instructions",
+  "create AGENTS.md", "setup agent knowledge base", "add agent docs",
+  "generate AGENTS.md", "setup agent context", or any request to create documentation
+  that helps AI agents navigate and work within a codebase.
 ---
 
 # Setup Agents Instructions
 
 Generate a structured agent knowledge base for any codebase. AGENTS.md is a ~100-line map, not an encyclopedia. Agents start with the map and follow pointers to deeper docs.
 
-## What gets generated
+## When to Use
 
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Short factual map: tech stack, scripts, folder structure, pointers to deeper docs |
-| `CLAUDE.md` | Symlink to `AGENTS.md` so Claude Code picks up the same map |
-| `ARCHITECTURE.md` | High-level domain map: top-level directories, entry points, dependency flow |
-| `docs/CODING.md` | Coding guidelines: detected patterns + opinionated best practices |
+- User asks to create AGENTS.md, agent docs, or agent context
+- User wants documentation that helps AI agents navigate a codebase
+- A codebase has no AGENTS.md or CLAUDE.md
+- Existing agent docs are outdated or monolithic
 
-## Procedure
+## Process
 
 ### 1. Scan the codebase
 
@@ -56,19 +61,19 @@ For other languages, check the standard framework indicators for that ecosystem.
 
 **Monorepo detection:**
 
-Check for `pnpm-workspace.yaml`, `lerna.json`, `nx.json`, `turbo.json`, or a `workspaces` field in `package.json`. If found, list the packages/apps by reading the workspace config and scanning the workspace directories.
+Check for `pnpm-workspace.yaml`, `lerna.json`, `nx.json`, `turbo.json`, or a `workspaces` field in `package.json`. If found, list the packages/apps by reading the workspace config.
 
 **Scripts:**
 
-Read available scripts from `package.json` scripts, `Makefile` targets, `Taskfile.yml`, `justfile`, `Cargo.toml` aliases, or equivalent. Note what each script does based on its command.
+Read available scripts from `package.json` scripts, `Makefile` targets, `Taskfile.yml`, `justfile`, `Cargo.toml` aliases, or equivalent.
 
 **Folder structure:**
 
-List top-level directories and determine the purpose of each by examining its contents. Go one level deeper for `src/` or equivalent source directories.
+List top-level directories and determine the purpose of each. Go one level deeper for `src/` or equivalent source directories.
 
 **Code patterns (for docs/CODING.md detected section):**
 
-- File naming convention: scan source files and determine kebab-case, camelCase, snake_case, or PascalCase
+- File naming convention: scan source files for kebab-case, camelCase, snake_case, or PascalCase
 - Import style: relative vs. path aliases, barrel exports
 - Test file location: colocated (`*.test.ts` next to source) or separate (`tests/`, `__tests__/`)
 - Framework-specific patterns: component structure, routing conventions, state management
@@ -81,127 +86,91 @@ Write `docs/CODING.md` with two parts:
 
 **Part 1 — Detected Patterns** (generated from scan):
 
-Add a `## Detected Patterns` section at the top listing codebase-specific conventions found in step 1. Only include patterns that were actually detected. Example entries:
-
-- File naming: kebab-case
-- Imports: path aliases via `@/` prefix
-- Tests: colocated as `*.test.ts` files
-- Components: functional components with named exports
+Add a `## Detected Patterns` section at the top listing codebase-specific conventions found in step 1.
 
 **Part 2 — Coding Guidelines** (from template):
 
 Append the content from [references/coding-guidelines.md](references/coding-guidelines.md).
 
-If the project is not TypeScript, omit the TypeScript subsection. If a different language was detected, substitute language-specific equivalents where possible (e.g., clippy lints for Rust, type hints for Python).
+If the project is not TypeScript, omit the TypeScript subsection. Substitute language-specific equivalents where possible.
 
 ### 3. Generate ARCHITECTURE.md
 
-Write `ARCHITECTURE.md` at the project root.
+Write `ARCHITECTURE.md` at the project root with these sections:
 
-Structure:
+- **Overview** — what the project is and what it's built with
+- **Directory Structure** — top-level directories with one-line descriptions, one level deeper for source dirs
+- **Entry Points** — where the app starts, where requests come in
+- **Module Dependencies** — high-level dependency flow between major directories
 
-```markdown
-# Architecture
-
-## Overview
-
-One paragraph describing what the project is and what it's built with (detected stack and framework).
-
-## Directory Structure
-
-Top-level directories with one-line descriptions of each. Go one level deeper for source directories.
-
-## Entry Points
-
-List the main entry points: where the app starts, where requests come in, where the CLI dispatches. Include file paths.
-
-## Module Dependencies
-
-Describe the high-level dependency flow between major directories/modules. Which modules depend on which. Keep it directional — show what imports what.
-
-## Packages (monorepo only)
-
-If monorepo detected: list each package/app with its name, path, and one-line purpose.
-```
-
-Only include sections where content was detected. Skip the Packages section for non-monorepos. Skip Module Dependencies if the project is too small or flat to have meaningful module boundaries.
+Only include sections where content was detected. Add a **Packages** section for monorepos.
 
 ### 4. Generate AGENTS.md
 
-Write `AGENTS.md` at the project root.
-
-Target length: 50-80 lines. This is a map, not a manual.
+Write `AGENTS.md` at the project root. Target length: 50-80 lines.
 
 Structure:
 
-```markdown
-# Agents
-
-> Read [docs/CODING.md](docs/CODING.md) for coding guidelines before making changes.
-
-## Stack
-
-List detected language, framework, key dependencies, and their versions. Table format:
-
-| Category | Technology |
-|----------|------------|
-| Language | TypeScript 5.x |
-| Framework | Next.js 15 |
-| ... | ... |
-
-## Scripts
-
-List available scripts and what they do. Table format:
-
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Start development server |
-| `npm test` | Run test suite |
-| ... | ... |
-
-Use the detected package manager in the commands.
-
-## Structure
-
-Top-level folder map with one-line descriptions. Same content as ARCHITECTURE.md's directory structure but condensed to one line per directory.
-
-## Deep Docs
-
-| Document | What it covers |
-|----------|---------------|
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Domain map, entry points, module dependencies |
-| [docs/CODING.md](docs/CODING.md) | Code style, change discipline, testing, git conventions |
-```
+- Callout linking to `docs/CODING.md`
+- **Stack** table (language, framework, key dependencies, versions)
+- **Scripts** table (command + purpose)
+- **Structure** (condensed folder map)
+- **Deep Docs** table linking to ARCHITECTURE.md and docs/CODING.md
 
 ### 5. Create CLAUDE.md symlink
-
-Create a symbolic link so Claude Code reads the same map:
 
 ```sh
 ln -sf AGENTS.md CLAUDE.md
 ```
 
-If `CLAUDE.md` already exists and is a regular file (not a symlink), ask the user before replacing it. If it already exists as a symlink pointing to `AGENTS.md`, skip this step.
+If `CLAUDE.md` already exists as a regular file, ask the user before replacing. If it's already a symlink to `AGENTS.md`, skip.
 
 ### 6. Handle existing files
 
-If any of the three files already exist:
+If any target files already exist:
 
-1. Read the existing file content.
-2. Identify sections that were generated by this skill (auto-detected content) vs. sections that appear to be human-written or from other tools.
-3. Update auto-detected sections with fresh scan results.
-4. Preserve all other sections in their original position.
-5. If you cannot confidently distinguish generated vs. human content, append new sections at the end rather than overwriting.
+1. Read the existing content
+2. Distinguish generated sections from human-written content
+3. Update generated sections with fresh scan results
+4. Preserve human-written sections in their original position
+5. If distinction is unclear, append new sections rather than overwriting
 
-For AGENTS.md specifically: if sections from other tools exist (like an `## Architecture` section from setup-architecture-harness), leave them untouched.
+For AGENTS.md: if sections from other tools exist (like `## Architecture` from setup-architecture-harness), leave them untouched.
 
-### 7. Report
+### 7. Verify
 
-Report what was generated and what was detected:
+Report what was generated and detected:
 
 - Files created or updated
 - Tech stack detected
 - Number of scripts found
 - Number of top-level directories mapped
 - Detected code patterns included in CODING.md
-- Any sections skipped and why
+- Sections skipped and why
+
+## Rationalizations
+
+| Excuse | Rebuttal |
+|--------|----------|
+| "Agents can figure out the codebase by reading files" | They can, but it costs tokens and time. A 50-line map saves hundreds of lines of exploratory reads per session. |
+| "We already have a README" | READMEs are for humans onboarding to the project. AGENTS.md is for machines that need to know where things are and how to run them. Different audience, different content. |
+| "ARCHITECTURE.md will go stale" | It goes stale slower than you think — directory structure and entry points change rarely. And a stale map is still better than no map. |
+| "docs/CODING.md duplicates what's in the code" | The detected patterns section reflects what the code does today. The guidelines section says what it should do going forward. Both are useful. |
+| "50-80 lines isn't enough" | That's the point. AGENTS.md is an index, not a manual. Depth lives in the linked docs. |
+
+## Red Flags
+
+- No `package.json`, `Cargo.toml`, `go.mod`, or equivalent found (might not be a code project)
+- Scan detects conflicting patterns (e.g., both camelCase and kebab-case file naming)
+- Existing AGENTS.md has content that looks hand-written and would be overwritten
+- CLAUDE.md exists as a regular file with non-trivial content
+- Generated AGENTS.md exceeds 100 lines (too much detail pulled into the map)
+
+## Verification
+
+- [ ] `AGENTS.md` exists and is under 100 lines
+- [ ] `CLAUDE.md` is a symlink pointing to `AGENTS.md`
+- [ ] `ARCHITECTURE.md` exists with at least Overview and Directory Structure sections
+- [ ] `docs/CODING.md` exists with Detected Patterns and Coding Guidelines sections
+- [ ] All links between documents resolve (no broken references)
+- [ ] Existing human-written sections in any file are preserved
