@@ -1,0 +1,15 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Project Setup",
+      "description": "Skills for scaffolding dev tooling, architecture enforcement, and agent documentation in new or existing projects.",
+      "skills": [
+        "setup-precommit",
+        "setup-architecture-harness",
+        "setup-agents-instructions"
+      ]
+    }
+  ]
+}
